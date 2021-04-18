@@ -5,6 +5,8 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import '@babel/polyfill'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
+import 'materialize-css/dist/js/materialize.min/'
+
 
 
 Vue.config.productionTip = false
