@@ -15,6 +15,12 @@ const routes = [
     name: 'login',
     meta:{layout: 'empty'},
     component: () => import('../views/Login.vue')
+  },  
+  {
+    path: '/registration',
+    name: 'registration',
+    meta:{layout: 'empty'},
+    component: () => import('../views/Register.vue')
   },
   {
     path: '/catigories',
@@ -22,12 +28,7 @@ const routes = [
     meta:{layout: 'main'},
     component: () => import('../views/Catigories.vue')
   },
-  {
-    path: '/registration',
-    name: 'registration',
-    meta:{layout: 'empty'},
-    component: () => import('../views/Register.vue')
-  },
+
   {
     path: '/record',
     name: 'record',
@@ -63,6 +64,12 @@ const routes = [
     name: 'detail-record',
     meta:{layout: 'main'},
     component: () => import('../views/Detail-Record.vue')
+  },
+  {
+    path: '/theme',
+    name: 'Theme',
+    meta:{layout: 'main'},
+    component: () => import('../views/Theme.vue')
   },
 
 ]

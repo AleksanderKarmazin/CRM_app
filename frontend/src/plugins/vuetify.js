@@ -6,6 +6,7 @@ import ru from 'vuetify/lib/locale/ru';
 
 Vue.use(Vuetify);
 
+
 export default new Vuetify({
     lang: {
       locales: { ru },
@@ -15,3 +16,6 @@ export default new Vuetify({
       iconFont: "md",
   },
 });
+
+
+

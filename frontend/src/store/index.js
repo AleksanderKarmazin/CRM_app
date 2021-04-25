@@ -8,6 +8,7 @@ import alert from './alert.module'
 import seeds from './seeds.module'
 import trueAds from './trueAds.module'
 import uploade from './uploade.module'
+import theme from './theme.module'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     alert,
     seeds,
     trueAds,
-    uploade
+    uploade,
+    theme
   }
 })

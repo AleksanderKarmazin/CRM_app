@@ -158,3 +158,23 @@
   max-width: 600px;
   margin: 0 auto;
 }
+
+.maincolor{
+  background: linear-gradient(45deg, red, blue);
+}
+.maincolor2{
+  background: linear-gradient(45deg, rgb(162, 216, 14), rgb(255, 123, 0));
+}
+.maincolor3{
+  background: linear-gradient(45deg, rgb(40, 189, 144), rgb(255, 0, 255));
+}
+.maincolor4{
+  background: linear-gradient(45deg, rgb(173, 76, 12), rgb(255, 102, 0));
+}
+.maincolor5{
+  background: linear-gradient(45deg, rgb(145, 255, 0), rgb(255, 251, 0));
+}
+.maincolor6{
+  background: linear-gradient(45deg, rgb(31, 72, 185), rgb(9, 255, 0));
+}
+
