@@ -14,7 +14,7 @@
           <a href="#" @click.prevent="$emit('click')">
             <i class="material-icons wight-text">dehaze</i>
           </a>
-          <span class="wight-text">12.12.12</span>
+          <span class="wight-text">{{date | date('datetime')}}</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
@@ -23,6 +23,7 @@
                 class="dropdown-trigger wight-text"
                 href="#"
                 data-target="dropdown"
+                ref="dropdownRef"
             >
               USER NAME
               <i class="material-icons right">arrow_drop_down</i>
@@ -30,13 +31,14 @@
 
             <ul id='dropdown' class='dropdown-content'>
               <li>
-                <a href="#" class="wight-text">
+                <router-link to="/profile" class="wight-text">
+      
                   <i class="material-icons">account_circle</i>Профиль
-                </a>
+                </router-link>
               </li>
               <li class="divider" tabindex="-1"></li>
               <li>
-                <a href="#" class="wight-text">
+                <a href="#" class="wight-text" @click="logout">
                   <i class="material-icons">assignment_return</i>Выйти
                 </a>
               </li>
@@ -50,8 +52,38 @@
 <script>
 export default {
   data: () =>({
-    curentTeame:localStorage.getItem('theme-color')
+    curentTeame:localStorage.getItem('theme-color'),
+    date: new Date(),
+    interval:null,
+    dropdown:null
   }),
+  mounted() {
+    this.dropdown = 
+    M.Dropdown.init(this.$refs.dropdownRef, {
+      constrainWidth:true
+    }),
+    this.interval = 
+    setInterval(() => {
+      this.date = new Date()
+    }, 1000);
+
+  },
+  methods: {
+    logout(e) {
+      e.preventDefault()
+      console.log('Logout')
+      this.$router.push('/login?message=logout')
+
+    }
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy')
+    clearInterval(this.interval)
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy()
+    }
+
+  },
 
 }
 </script>
