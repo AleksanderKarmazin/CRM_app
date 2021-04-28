@@ -1,5 +1,6 @@
-<template>
-  <form class="card auth-card" @submit="loginSubmit">
+<template> <div>
+  <form class="card auth-card" @submit.prevent="onSubmit">
+  
   <div class="card-content">
     <span class="card-title">Домашняя бухгалтерия</span>
     <div class="input-field">
@@ -71,8 +72,8 @@
       Нет аккаунта?
       <router-link to="/registration">Зарегистрироваться</router-link>
     </p>
-    </div>
-    </form>
+    </div><FlashMessage></FlashMessage>
+    </form></div>
 </template>
 
 <script>
@@ -91,27 +92,29 @@ export default {
     password:{required, minLength: minLength(3)}
   },
   mounted() {
-    this.$messages('TEST ')
-    this.$error('TEST ')
     if (messages[this.$route.query.message]) {
       this.$messages(messages[this.$route.query.message])
     }
   },
-
   methods: {
-    loginSubmit(e){
-      e.preventDefault();
+    async onSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      const formData = {
-        email: this.email,
-        password: this.password
-      }
-      console.log(formData)
-      this.$router.push('/')
+        const user = {
+          email: this.email,
+          password: this.password,
+        };
+
+        try {
+          await this.$store.dispatch('loginUser', user)
+          this.$router.push('/?message=login')
+        } catch (error) {
+          
+        } 
     }
+
   },
 }
 </script>

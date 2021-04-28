@@ -37,8 +37,11 @@ export default {
     burgerOpened:true,
     curentTeame:localStorage.getItem('theme-color')
   }),
-  methods: {
 
+  mounted() {
+    
+  },
+  methods: {
 
   },
   name: 'main-layout',

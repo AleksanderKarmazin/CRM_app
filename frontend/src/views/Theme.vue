@@ -1,20 +1,23 @@
 <template>
 <div>
 <div class="btn_one_class">
-  <h1>Main content</h1>
+  <h1>Main theams </h1>
+  <FlashMessage></FlashMessage>
   <v-row
     align="center"
    
   >
-    <v-btn @click="btn_1" class="btn_one_class single_btn">Normal 1 </v-btn>
-    <v-btn @click="btn_2" class="btn_one_class">Normal 2</v-btn>
-    <v-btn @click="btn_3" class="btn_one_class">Normal 3</v-btn>
-    <v-btn @click="btn_4" class="btn_one_class">Normal 4</v-btn>
-    <v-btn @click="btn_5" class="btn_one_class">Normal 5</v-btn>
-    <v-btn @click="btn_6" class="btn_one_class">Normal 6</v-btn>
-    <v-btn @click="btn_cleare" class="btn_one_class">Clear</v-btn>
+    <v-btn @click="btn_1" class="btn_one_class single_btn">Theam 1 </v-btn>
+    <v-btn @click="btn_2" class="btn_one_class">Theam 2</v-btn>
+    <v-btn @click="btn_3" class="btn_one_class">Theam 3</v-btn>
+    <v-btn @click="btn_4" class="btn_one_class">Theam 4</v-btn>
+    <v-btn @click="btn_5" class="btn_one_class">Theam 5</v-btn>
+    <v-btn @click="btn_6" class="btn_one_class">Theam 6</v-btn>
+    <v-btn @click="btn_cleare" class="btn_one_class">Clear theam</v-btn>
+    <v-btn @click="btn_info" class="btn_one_class">INFO</v-btn>
   </v-row>
- </div>
+ </div> 
+ 
  </div>
 </template>
 
@@ -67,6 +70,11 @@ export default {
         console.log("btn_cleare")
         document.location.reload();
         })
+    },
+    btn_info(){
+        this.flashMessage.warning({ title: 'Warning Title', message: "text" })
+        console.log("btn_info")
+
     }
   }
 }

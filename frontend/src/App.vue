@@ -10,6 +10,9 @@
 import EmptyLayout from './layouts/EmptyLayout'
 import MainLayout from './layouts/MainLayout'
 
+
+
+
 export default {
   computed: {
     layout(){
@@ -18,7 +21,18 @@ export default {
   },
   components:{
     EmptyLayout, MainLayout
-  }
+  },
+  // mounted() {
+  //   // this.$messages('TEST ')
+  //   // this.$error('TEST ')
+  //   if (localStorage.getItem('loginMeesage')) {
+  //     this.$messages(localStorage.getItem('loginMeesage'))
+  //   }
+  // },
+
+
+  
+
 }
 </script>
 <style>

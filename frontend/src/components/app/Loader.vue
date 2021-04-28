@@ -1,0 +1,43 @@
+<template>
+  <div class="app-loader">
+      <div class="preloader-wrapper active a">
+        <div class="spinner-layer " :class="color">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right ">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    color() {
+      const colors = [
+        "spinner-red-only",
+        "spinner-blue-only",
+        "spinner-green-only",
+        "spinner-blue",
+        "spinner-red",
+      ];
+      return colors[Math.floor(Math.random() * 3)];
+    },
+  },
+};
+</script>
+
+<style>
+.a {
+    width: 300px;
+    height: 300px;
+}
+
+
+</style>

@@ -24,8 +24,9 @@
                 href="#"
                 data-target="dropdown"
                 ref="dropdownRef"
+                
             >
-              USER NAME
+               {{name}}
               <i class="material-icons right">arrow_drop_down</i>
             </a>
 
@@ -57,6 +58,11 @@ export default {
     interval:null,
     dropdown:null
   }),
+  computed:{
+    name() {
+      return `${this.$store.getters.user.name}`
+    }
+  },
   mounted() {
     this.dropdown = 
     M.Dropdown.init(this.$refs.dropdownRef, {
@@ -72,8 +78,8 @@ export default {
     logout(e) {
       e.preventDefault()
       console.log('Logout')
+      localStorage.removeItem('user')
       this.$router.push('/login?message=logout')
-
     }
   },
   beforeDestroy() {

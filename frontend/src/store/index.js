@@ -10,17 +10,23 @@ import trueAds from './trueAds.module'
 import uploade from './uploade.module'
 import theme from './theme.module'
 
+
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  // state: {
-  // },
-  // mutations: {
-  // },
-  // actions: {
-  // },
+  state: {
+  },
+  mutations: {
+  },
+  actions: {
+    async frtchCurrency() {
+      const key = process.env.VUE_APP_FIXER 
+      const res =  await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,RUB,CAD`)
+      return await res.json()
+    }
+  },
   modules: {
-    // itemsAds,
     user,
     alert,
     seeds,

@@ -71,6 +71,12 @@ const routes = [
     meta:{layout: 'main'},
     component: () => import('../views/Theme.vue')
   },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    meta:{layout: 'main'},
+    component: () => import('../views/Notifications.vue')
+  },
 
 ]
 

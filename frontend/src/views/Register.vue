@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit="registerSubmit">
+  <form class="card auth-card" @submit.prevent="registerSubmit">
   <div class="card-content">
     <span class="card-title">Домашняя бухгалтерия</span>
     <div class="input-field">
@@ -135,22 +135,28 @@ name:"registration",
     confirmPassword:{required, sameAsPassword: sameAs('password')}
   },
   methods: {
-    registerSubmit(e){
-      e.preventDefault();
+    registerSubmit(){
+      
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      const formData = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword
-      }
-      console.log(formData)
-      this.$router.push('/')
+      const user = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+
+        this.$store.dispatch('registerUser', user)
+        .then(()=>{
+          this.$router.push('/?message=registrationSucsess')
+        })
+        .catch(() => {
+          
+        })
     }
   },
+
 }
 </script>
 

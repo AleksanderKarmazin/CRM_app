@@ -46,6 +46,8 @@ export default {
           { title: "Новая запись", icon: "note_add", url: "/record" },
           { title: "Категории", icon: "category", url: "/catigories" },
           { title: "Настройки темы", icon: "dark_mode", url: "/theme" },
+          { title: "Уведомления", icon: "notifications", url: "/notifications" },
+
         ];
       } else {
         [
