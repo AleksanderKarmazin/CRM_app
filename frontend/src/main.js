@@ -11,13 +11,15 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'materialize-css/dist/js/materialize.min/'
 // pips - filter 
 import dateFilter from './filters/date.filter'
-
+//Custom plagins
+import messagePlagin from './utils/message.plagin'
  
 
 
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
+Vue.use(messagePlagin)
 // Произошла глобальная регистрация этой функции, теперь она видна во всём приложении 
 Vue.filter('date', dateFilter)
 

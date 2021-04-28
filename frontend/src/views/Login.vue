@@ -54,8 +54,6 @@
       {{$v.password.$params.minLength.min}} 
       numbers! The entrened password has {{password.length}} nunbers!
       </small>
-
-      <!-- <small class="helper-text invalid">Password</small> -->
     </div>
   </div>
   <div class="card-action">
@@ -79,6 +77,7 @@
 
 <script>
 import {email, required, minLength} from 'vuelidate/lib/validators'
+import messages from '../utils/messages'
 
 
 export default {
@@ -91,6 +90,14 @@ export default {
     email:{email, required},
     password:{required, minLength: minLength(3)}
   },
+  mounted() {
+    this.$messages('TEST ')
+    this.$error('TEST ')
+    if (messages[this.$route.query.message]) {
+      this.$messages(messages[this.$route.query.message])
+    }
+  },
+
   methods: {
     loginSubmit(e){
       e.preventDefault();
