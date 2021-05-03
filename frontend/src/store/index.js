@@ -9,7 +9,7 @@ import seeds from './seeds.module'
 import trueAds from './trueAds.module'
 import uploade from './uploade.module'
 import theme from './theme.module'
-
+import catigories from './catigories.module'
 
 
 Vue.use(Vuex)
@@ -32,6 +32,7 @@ export default new Vuex.Store({
     seeds,
     trueAds,
     uploade,
-    theme
+    theme,
+    catigories
   }
 })

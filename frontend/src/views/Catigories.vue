@@ -5,7 +5,7 @@
       </div>
       <section>
     <div class="row">
-      <CatigiryCriate/>
+      <CatigiryCriate @created="addNewCategory"/>
       <CatigiryEdit/>
     </div>
     </section>
@@ -19,7 +19,18 @@ import CatigiryEdit from '../components/CatigiryEdit.vue'
 
 export default {
   name:'Catigories',
+  data() {
+    return {
+      categories: []
+    }
+  },
   components: { CatigiryCriate, CatigiryEdit },
+  methods: {
+    addNewCategory(category) {
+       this.categories.push(category)
+       console.log(this.categories)
+    }
+  },
 
 }
 </script>

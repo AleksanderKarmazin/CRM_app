@@ -5,7 +5,9 @@ export function authHeader() {
     if (user && user.token) {
     
         // console.log("userA from authHeader", userA );
-        return { 'authorization': 'Bearer ' + user.token };
+        return { 
+            'authorization': 
+            'Bearer ' + user.token };
     } else {
         return {};
     }

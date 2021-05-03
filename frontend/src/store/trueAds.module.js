@@ -1,5 +1,5 @@
 import { createAd, fetchAd    } from '../services/ad.service'
-// import axios from 'axios'
+
 
 
 export default {
