@@ -21,7 +21,7 @@
             
             >
               <td>{{cur}}</td>
-              <td>{{rates[cur].toFixed(1)}}</td>
+              <td>{{rates[cur].toFixed(4)}}</td>
               <td>{{date | date('date')}}</td>
             </tr>
             </tbody>

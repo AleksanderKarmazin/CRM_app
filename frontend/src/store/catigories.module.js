@@ -27,7 +27,7 @@ export default {
 
     },
     actions: {
-        async createCatigory({commit}, {title, limit}) {
+        async createCatigory({commit, dispatch}, {title, limit}) {
             try {
                 commit('clearError')
                 commit('clearInfo')
@@ -38,17 +38,12 @@ export default {
                   })
                   console.log('New catigory in request', newCatigory);
                   commit('createCatigory', newCatigory) 
+                  dispatch('getCatigories')
                   commit('setLoading', false)
+                  return newCatigory
             } catch (error) {
                 commit('setError', error.response.data.message)
                 commit('setLoading', false)
-                console.log('err', error.response.data.message)
-                console.log('err', error.response.data.stack)
-                console.log('response.data', error.response.data);
-                console.log('response.status', error.response.status);
-                console.log('response.statusText', error.response.statusText);
-                console.log('response.headers', error.response.headers);
-                console.log('response.conf', error.response.config);
                 throw error;
             }
         },
@@ -58,11 +53,9 @@ export default {
                 commit('clearInfo')
                 commit('setLoading', true)
                 const Catigories = await getCatigories()
-                     console.table(Catigories)
-
-                 
-                  commit('setCatigories', Catigories) 
-                  commit('setLoading', false)
+                commit('setCatigories', Catigories) 
+                commit('setLoading', false)
+                return Catigories;
             } catch (error) {                
                 console.log('err', error)
                 console.log('err', error.response.data.stack)
@@ -78,7 +71,7 @@ export default {
                 commit('clearInfo')
                 commit('setLoading', true)
                 const CatigoryById = await getCatigoriesById({_id})
-                  console.log('catigory by ID from request', CatigoryById);
+                //   console.log('catigory by ID from request', CatigoryById);
                   commit('setLoading', false)
             } catch (error) {
                 commit('setError', error.response.data.message)
@@ -125,6 +118,7 @@ export default {
 
                 dispatch('getCatigories')
                 commit('setLoading', false)
+                return CatigoryById;
             } catch (error) {
                 commit('setError', error.response.data.message)
                 commit('setLoading', false)
