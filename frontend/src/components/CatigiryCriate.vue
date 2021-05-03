@@ -78,7 +78,7 @@ export default {
     validations:{
         title:{required},
         limit:{minValue: minValue(100)}
-    }, 
+    },  
     mounted() {
         M.updateTextFields()
     },

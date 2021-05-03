@@ -32,19 +32,29 @@ const API_URL = 'http://localhost:5000'
 //   return  response.data
 
   
-// }
+// }  
+
+
+
+
+
 
 export const request = async ({ url, method, data={}}) => {
-  let userInfo = JSON.parse(localStorage.getItem('user'));
-  // let userInfo = this
-  
-  const headers = {
-        authorization: `Bearer ${userInfo.token}`
+
+let user = JSON.parse(localStorage.getItem('user'));
+let headers = null
+if (user && user.token) {
+    headers = {
+        authorization: `Bearer ${user.token}`
   }
+
+} else {
+  headers = null
+}
+
   const response = await axios({
     method,
     url : `${API_URL}/${url}`, 
-    // config:axiosConfig,
     headers,
     data
   }) 

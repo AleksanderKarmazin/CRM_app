@@ -63,6 +63,7 @@ export default {
             }
 
         } catch (error) {
+            console.log(error);
             commit('setLoading', false)
             commit('setError', error.response.data.message)
             throw error;

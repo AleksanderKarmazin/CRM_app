@@ -107,11 +107,12 @@ export default {
           password: this.password,
         };
 
+
         try {
           await this.$store.dispatch('loginUser', user)
           this.$router.push('/?message=login')
-        } catch (error) {
-          
+        } catch (e) {
+          console.log(e)
         } 
     }
 

@@ -8,7 +8,7 @@ import Catigories from '../models/catigoriesModel.js';
 // @rout    GET /ad
 // @access  public
 const getCatigories = asyncHandler(async (req, res) => {
-    const catigoriesList = await Catigories.find({})
+    const catigoriesList = await Catigories.find({user: req.user._id})
     res.json(catigoriesList);
 })
 
