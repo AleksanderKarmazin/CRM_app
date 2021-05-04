@@ -8,8 +8,12 @@
     <div class="row" v-else>
       <CatigiryCriate @created="addNewCategory"/>
       <CatigiryEdit
+      v-if="categories.length"
       :categories="categories"
+      :key="categories.length + updateCount"
+      @updated="updateCatigories"
       />
+      <p v-else class="center">Категорий пока нет</p>
     </div>
     </section>
     <div class="tablePadding">
@@ -18,6 +22,7 @@
       <table>
         <thead>
           <tr>
+              <th>Номер</th>
               <th>Название категории</th>
               <th>Лимит</th>
           </tr>
@@ -27,6 +32,7 @@
           v-for="c in categories" 
           :key="c._id"
           >
+            <td>Номер {{(categories.findIndex(categories => categories._id === c._id))+1}}</td>
             <td>{{c.title}}</td>
             <td>{{c.limit}}</td>
           </tr>
@@ -48,6 +54,7 @@ export default {
     return {
       categories: [],
       loading: true,
+      updateCount: 0
 
     }
   },
@@ -69,7 +76,15 @@ export default {
     this.loading = false
     // this.$store.commit('createCatigory', category)
     console.log('addNewCategory', this.categories)
+    },
+    updateCatigories(category){
+      const idx = this.categories.findIndex( c => c._id === category._id)
+      this.categories[idx].title = category.title
+      this.categories[idx].limit = category.limit
+      this.updateCount++
+      console.log('updateCatigories', category)
     }
+
   },
 
 }

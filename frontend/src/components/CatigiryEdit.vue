@@ -76,7 +76,7 @@ export default {
         select:null,
         title:'',
         limit: 1,
-        current: null
+        current: null,
       }
     },
     validations:{
@@ -104,10 +104,14 @@ export default {
                 return
             }
         try {
-          await this.$store.dispatch('updateCatigoryById', {
+          const catigoryData = {
             _id: this.current,
             title: this.title,
-            limit: this.limit })
+            limit: this.limit 
+          }
+          await this.$store.dispatch('updateCatigoryById', catigoryData)
+          this.$messages('Категория обновлена')
+          this.$emit('updated', catigoryData)
         } catch (error) {
           
         }
