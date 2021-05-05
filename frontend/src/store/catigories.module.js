@@ -73,6 +73,7 @@ export default {
                 const CatigoryById = await getCatigoriesById({_id})
                 //   console.log('catigory by ID from request', CatigoryById);
                   commit('setLoading', false)
+                return CatigoryById;
             } catch (error) {
                 commit('setError', error.response.data.message)
                 commit('setLoading', false)

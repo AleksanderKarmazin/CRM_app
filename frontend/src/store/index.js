@@ -10,7 +10,7 @@ import trueAds from './trueAds.module'
 import uploade from './uploade.module'
 import theme from './theme.module'
 import catigories from './catigories.module'
-
+import account from './account.module'
 
 Vue.use(Vuex)
 
@@ -33,6 +33,7 @@ export default new Vuex.Store({
     trueAds,
     uploade,
     theme,
-    catigories
+    catigories,
+    account
   }
 })

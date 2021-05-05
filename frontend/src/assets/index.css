@@ -79,13 +79,22 @@
 .page-title {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content:space-between;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   padding-bottom: 1rem;
   border-bottom: solid 1px rgba(51, 51, 51, 0.12);
 }
+.page-title-btn {
+  align-items: center;
+  justify-content:space-between;
+  padding: 10px;
+
+  
+
+}
+
 .page-title a {
   color: #000;
   opacity: 0.8;

@@ -13,53 +13,36 @@
         </div>
       </div>
     </div>
-  <!-- <v-simple-table>
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">
-            Счет в валюте
-          </th>
-           <th class="text-left">
-            Calories
-          </th> 
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="cur of currencies"
-          :key="cur"
-        >
-          <td>{{getCurrency(cur) | currency(cur)}}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table> -->
-
-
 </template>
 
 <script>
-
-
-
 export default {
  props:['rates'],
  data() {
      return {
-         currencies: ['RUB', 'USD','EUR', 'CAD' ]
+         currencies: ['RUB', 'USD','EUR', 'CAD' ],
+         balanceInRub: 0,
+         financialGoalInRub: 0,
+         persentageFullfilment: 0
      }
  },
+ async mounted() {
+    await this.$store.dispatch('getAccount')
+    this.balanceInRub = this.$store.getters.getBalanceInRub
+    console.log('balance', this.balanceInRub)
+
+
+},
  computed: {
      base() {
-         console.log(this.$store.getters.user.countValue)
-         console.log(this.$store.getters.user.countValue / (this.rates['RUB'] / this.rates['EUR']))
-          return this.$store.getters.user.countValue / (this.rates['RUB'] / this.rates['EUR'])
+          return this.balanceInRub/ (this.rates['RUB'] / this.rates['EUR'])
+          // return this.$store.getters.user.countValue / (this.rates['RUB'] / this.rates['EUR'])
      }
+            
  },
  watch:{
      base(){
-     }
+     },
  },
  methods: {
      getCurrency(currency){
