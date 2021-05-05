@@ -15,7 +15,7 @@
 
     <form v-else class="form" @submit.prevent="submitHendler">
       <div class="input-field">
-        <select ref="select">
+        <select ref="select" v-model="current">
           <option 
           v-for="c of categories" 
           :key="c._id" 
@@ -107,7 +107,8 @@ export default {
       loading: true,
       type:'outcome',
       amount: 1,
-      description:''
+      description:'',
+      current: null
     };
   },    
   validations:{
@@ -123,14 +124,34 @@ export default {
        }
     }
   },
+  watch: {
+  current(){
+    console.log("this.current", this.current)
+      }
+  },
   methods: {
     async submitHendler(){
     if (this.$v.$invalid) {
       this.$v.$touch()
       return
     }
+
+    
+
     if (this.canCreateRecord) {
-       console.log("OK")
+      try {
+          const  recordData = {
+            category_id: this.current,   
+            amount: this.amount,
+            description: this.description,
+            type: this.type
+          }
+          
+          await this.$store.dispatch('createRecord', recordData)
+          console.log("recordData", recordData)
+
+    } catch (error) {}
+      
     } else {
       this.$messages(`На счёие не хватет ${this.amount - this.$store.getters.getBalanceInRub} ₽`)
     }

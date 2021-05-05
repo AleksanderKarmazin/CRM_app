@@ -22,13 +22,12 @@ export default {
   components:{
     EmptyLayout, MainLayout
   },
-  // mounted() {
-  //   // this.$messages('TEST ')
-  //   // this.$error('TEST ')
-  //   if (localStorage.getItem('loginMeesage')) {
-  //     this.$messages(localStorage.getItem('loginMeesage'))
-  //   }
-  // },
+   async mounted() {
+    // this.$messages('TEST ')
+    // this.$error('TEST ')
+    this.currency = await this.$store.dispatch('frtchCurrency')
+    await this.$store.dispatch('getAccount')
+  },
 
 
   

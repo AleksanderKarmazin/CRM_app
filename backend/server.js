@@ -19,6 +19,7 @@ import newRt from './routes/newRt.js'
 import adRoutes from './routes/adRoutes.js'
 import catigoriesRoutes from './routes/catigoriesRoutes.js'
 import accountRoutes from './routes/accountRoutes.js'
+import recordRoutes from './routes/recordRoutes.js'
 
 dotenv.config('./.env');
 
@@ -47,6 +48,7 @@ app.use('/api', newRt);
 app.use('/api', adRoutes);
 app.use('/api', catigoriesRoutes);
 app.use('/api', accountRoutes);
+app.use('/api', recordRoutes);
 
 // PAYPAL 
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))

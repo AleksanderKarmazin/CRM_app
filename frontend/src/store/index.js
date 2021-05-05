@@ -11,6 +11,8 @@ import uploade from './uploade.module'
 import theme from './theme.module'
 import catigories from './catigories.module'
 import account from './account.module'
+import record from './record.module'
+
 
 Vue.use(Vuex)
 
@@ -34,6 +36,7 @@ export default new Vuex.Store({
     uploade,
     theme,
     catigories,
-    account
+    account,
+    record
   }
 })
