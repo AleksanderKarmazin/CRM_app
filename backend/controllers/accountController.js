@@ -80,6 +80,21 @@ const updateAccountById = asyncHandler(async (req, res) => {
     }
 })
 
+const updateBalanceAccountById = asyncHandler(async (req, res) => {
+    const {current_balance} = req.body
+
+    const updateBalanceAccountById = await Account.findById(req.params.id)
+
+    if (updateBalanceAccountById) {
+        updateBalanceAccountById.current_balance = current_balance
+
+        const updatedBalanceAccount = await updateBalanceAccountById.save()
+        res.status(201).json(updatedBalanceAccount)
+    } else {
+        res.status(401)
+        throw new Error('Account not found')
+    }
+})
 
 
 export {
@@ -87,5 +102,6 @@ export {
     getAccountById, 
     deleteAccountById, 
     createAccount, 
-    updateAccountById
+    updateAccountById,
+    updateBalanceAccountById
 }

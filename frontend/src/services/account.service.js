@@ -7,11 +7,13 @@ const getAccount = () => request({ url: `api/account`, method: 'get'});
 const getAccountById = (params) => request({ url: `api/account/` + `${params._id}`, method: 'get'});
 const deleteAccountById = (params) => request({ url: `api/account/`+`${params._id}`, method: 'delete'});
 const updateAccountById = (data, params) => request({ url: `api/account/`+`${params._id}`, method: 'put', data});
+const updateBalanceAccountById = (data, params) => request({ url: `api/account/balance/`+`${params._id}`, method: 'put', data});
 
 export { 
       getAccount, 
       getAccountById, 
       deleteAccountById, 
       createAccount, 
-      updateAccountById
+      updateAccountById,
+      updateBalanceAccountById
  };

@@ -6,7 +6,8 @@ import {
     getAccountById, 
     deleteAccountById, 
     createAccount, 
-    updateAccountById
+    updateAccountById,
+    updateBalanceAccountById
 } from '../controllers/accountController.js'
 
 import { protect, admin } from '../middleware/authMiddleware.js'
@@ -22,5 +23,9 @@ router
     .get(protect, getAccountById)
     .delete(protect, deleteAccountById)
     .put(protect, updateAccountById)
-    
+
+router
+    .route('/account/balance/:id')
+    .put(protect, updateBalanceAccountById)
+ 
 export default router

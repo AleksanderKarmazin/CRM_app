@@ -146,9 +146,20 @@ export default {
             description: this.description,
             type: this.type
           }
-          
           await this.$store.dispatch('createRecord', recordData)
-          console.log("recordData", recordData)
+          const newBalance = this.type === 'income'
+          ? this.$store.getters.getBalanceInRub + this.amount
+          : this.$store.getters.getBalanceInRub - this.amount
+          
+          const newBalanceData = {
+            _id: this.$store.getters.getAccountIDInRub,
+            current_balance:newBalance 
+          }
+          await this.$store.dispatch('updateBalanceAccountById', newBalanceData)
+          this.$messages('Запись успешно создана')
+          this.$v.reset()
+          this.amount = 1
+          this.description = '' 
 
     } catch (error) {}
       

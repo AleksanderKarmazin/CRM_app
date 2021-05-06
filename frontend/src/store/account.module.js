@@ -3,7 +3,8 @@ import {
     getAccountById, 
     deleteAccountById, 
     createAccount, 
-    updateAccountById
+    updateAccountById,
+    updateBalanceAccountById
     
 } from '../services/account.service'
 
@@ -33,10 +34,15 @@ export default {
             const financialGoalInRub = accountsInRub[0].financial_goal
             const persentageDone = (balanceInRubVuex / financialGoalInRub ) * 100
             const per = Math.round(persentageDone)
-            return per
-            
-            
+            return per 
         },
+        getAccountIDInRub: state => {
+            const accountsInRub = state.accounts.filter(cur => cur.account_currency === 'RUB');
+            const AccountID = accountsInRub[0]._id
+            return AccountID;
+        },
+
+
     },
     mutations: {
         createAccount (state, payload) {
@@ -135,7 +141,7 @@ export default {
             account_currency,
             current_balance,
             financial_goal
-        }) {
+            }) {
             try {
                 commit('clearError')
                 commit('clearInfo')
@@ -147,6 +153,29 @@ export default {
                 },{_id})
                   console.log('Account by ID from request was updated', AccountById);
 
+                dispatch('getAccount')
+                commit('setLoading', false)
+                return AccountById;
+            } catch (error) {
+                commit('setError', error.response.data.message)
+                commit('setLoading', false)
+                console.log('err', error.response.data.message)
+                console.log('err', error.response.data.stack)
+                throw error;
+            }
+        },
+        async updateBalanceAccountById({commit, dispatch}, {
+            _id,
+            current_balance,
+            }) {
+            try {
+                commit('clearError')
+                commit('clearInfo')
+                commit('setLoading', true)
+                const AccountById = await updateBalanceAccountById({
+                    current_balance,
+                },{_id})
+                  console.log('Account by ID from request was updated', AccountById);
                 dispatch('getAccount')
                 commit('setLoading', false)
                 return AccountById;
