@@ -55,7 +55,7 @@ export default {
                 const Catigories = await getCatigories()
                 commit('setCatigories', Catigories) 
                 commit('setLoading', false)
-                return Catigories;
+                return Catigories
             } catch (error) {                
                 console.log('err', error)
                 console.log('err', error.response.data.stack)

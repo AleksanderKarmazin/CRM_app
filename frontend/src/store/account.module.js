@@ -19,6 +19,7 @@ export default {
         },
         getBalanceInRub: state => {
             const accountsInRub = state.accounts.filter(cur => cur.account_currency === 'RUB');
+            console.log("accountsInRub", accountsInRub);
             const balanceInRub = accountsInRub[0].current_balance
             return balanceInRub;
         },
