@@ -19,7 +19,7 @@
         <strong>{{c.title}}</strong>
         {{c.spend | currency('RUB')}} из {{c.limit | currency('RUB')}} или {{c.progressPersent + ' %'}} 
       </p>
-      <div class="progress" >
+      <div class="progress" v-tooltip="c.tooltip">
         <div
             class="determinate red"
             :class="c.progressColor"
@@ -35,7 +35,8 @@
 
 <script>
 import Loader from '../components/app/Loader.vue'
-import {mapGetters} from 'vuex'
+import currencyFilter from '../filters/currency.filter'
+
 export default {
   components: { Loader },
   name: 'planing',
@@ -71,12 +72,15 @@ export default {
          :persent < 100 
          ? 'yellow'
          : 'red'
+        const tooltipValue = cat.limit - spend
+        const tooltip = `${tooltipValue < 0 ? 'Превышен лимит на': 'Осталось '} ${currencyFilter(Math.abs(tooltipValue))}`
 
          return {
            ...cat,
            spend,
            progressPersent,
-           progressColor
+           progressColor,
+           tooltip
          }
     })
     console.log("cat - progressColor", this.categories)

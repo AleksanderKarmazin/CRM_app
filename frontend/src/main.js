@@ -18,7 +18,8 @@ import dateFilter from './filters/date.filter'
 import currencyFilter from './filters/currency.filter'
 //Custom plagins
 import messagePlagin from './utils/message.plagin'
-  
+ //Directives 
+ import tooltipDirective from './directives/tooltip.directive' 
 
 
 
@@ -33,6 +34,8 @@ Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 
 Vue.component('Loader', Loader)
+
+Vue.directive('tooltip', tooltipDirective)
 
 
 new Vue({
