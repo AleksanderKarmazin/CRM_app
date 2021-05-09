@@ -68,7 +68,7 @@ const routes = [
     beforeEnter: AuthRouterService
   },
   {
-    path: '/detail-record',
+    path: '/detail-record/:id',
     name: 'detail-record',
     meta:{layout: 'main'},
     component: () => import('../views/Detail-Record.vue'),

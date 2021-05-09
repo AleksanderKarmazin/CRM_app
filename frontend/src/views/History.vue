@@ -8,7 +8,10 @@
     <canvas></canvas>
   </div>
 <loader v-if="loading" />
-        <p v-else-if="!records.length" class="center">Записей  пока нет</p>
+        <p v-else-if="!records.length" class="center">
+          Записей  пока нет
+          <router-link to="/record">Добавте первую запись</router-link>
+          </p>
 
 
   <section v-else>
@@ -36,8 +39,8 @@ export default {
   async mounted() {
     // this.records = await this.$store.dispatch('getRecord')
     this.categories = await this.$store.dispatch('getCatigories')
-    console.log("object", this.categories)
-    const records = await this.$store.dispatch('getRecord')
+     await this.$store.dispatch('getRecord')
+    const records = this.$store.getters.getRecord
     const catArr = this.$store.getters.getCatigory
     const modRecords = records.map( record =>{
         return {
@@ -45,10 +48,13 @@ export default {
           categoryName: catArr.find(c => c._id === record.category).title,
           typeClass: record.type === 'income' ? 'green' : 'red',
           typeText: record.type === 'income' ? 'Доход' : 'Расход',
+          
+          
         }
     })
     this.records =  modRecords
     console.log('this.records', this.records)
+    console.log('this.categories', this.categories)
     this.loading=false
 
     },

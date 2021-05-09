@@ -26,7 +26,12 @@
           </span>
         </td>
         <td>
-          <button class="btn-small btn">
+          <button 
+          v-tooltip="'Посмотреть запись'"
+          class="btn-small btn" 
+          @click="$router.push('/detail-record/' + record[idx]._id)"
+          
+          >
             <i class="material-icons">open_in_new</i>
           </button>
         </td>

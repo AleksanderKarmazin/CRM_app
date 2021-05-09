@@ -30,7 +30,6 @@ export default {
         },
         persentageFullfilment:state => {
             const accountsInRub = state.accounts.filter(cur => cur.account_currency === 'RUB');
-            console.log(accountsInRub);
             const balanceInRubVuex = accountsInRub[0].current_balance  
             const financialGoalInRub = accountsInRub[0].financial_goal
             const persentageDone = (balanceInRubVuex / financialGoalInRub ) * 100

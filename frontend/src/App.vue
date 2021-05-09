@@ -26,7 +26,7 @@ export default {
     // this.$messages('TEST ')
     // this.$error('TEST ')
     this.currency = await this.$store.dispatch('frtchCurrency')
-    // await this.$store.dispatch('getAccount')
+    await this.$store.dispatch('getAccount')
   },
 
 

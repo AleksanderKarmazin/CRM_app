@@ -53,10 +53,10 @@ export default {
                 commit('clearInfo')
                 commit('setLoading', true)
                 const CatigoriesRes = await getCatigories()
-                const Catigories = Object.keys(CatigoriesRes).map(key =>({...CatigoriesRes[key], _id:key }))
+                const Catigories = Object.keys(CatigoriesRes).map(key =>({...CatigoriesRes[key], _id:key  }))
                 commit('setCatigories', CatigoriesRes) 
                 commit('setLoading', false)
-                return Catigories
+                return CatigoriesRes
             } catch (error) {                
                 console.log('err', error)
                 console.log('err', error.response.data.stack)
