@@ -26,56 +26,67 @@ const routes = [
     path: '/catigories',
     name: 'catigories',
     meta:{layout: 'main'},
-    component: () => import('../views/Catigories.vue')
+    component: () => import('../views/Catigories.vue'),
+    //Первый вариант защиты роутов beforeEnter
+    beforeEnter: AuthRouterService
   },
 
   {
     path: '/record',
     name: 'record',
     meta:{layout: 'main'},
-    component: () => import('../views/Record.vue')
+    component: () => import('../views/Record.vue'),
+    beforeEnter: AuthRouterService
+    
   },
   {
     path: '/profile',
     name: 'profile',
     meta:{layout: 'main'},
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Profile.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '/planning',
     name: 'planning',
     meta:{layout: 'main'},
-    component: () => import('../views/Planning.vue')
+    component: () => import('../views/Planning.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '',
     name: 'home',
     meta:{layout: 'main'},
-    component: () => import('../views/Home.vue')
+    component: () => import('../views/Home.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '/history',
     name: 'history',
     meta:{layout: 'main'},
-    component: () => import('../views/History.vue')
+    component: () => import('../views/History.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '/detail-record',
     name: 'detail-record',
     meta:{layout: 'main'},
-    component: () => import('../views/Detail-Record.vue')
+    component: () => import('../views/Detail-Record.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '/theme',
     name: 'Theme',
     meta:{layout: 'main'},
-    component: () => import('../views/Theme.vue')
+    component: () => import('../views/Theme.vue'),
+    beforeEnter: AuthRouterService
   },
   {
     path: '/notifications',
     name: 'Notifications',
     meta:{layout: 'main'},
-    component: () => import('../views/Notifications.vue')
+    component: () => import('../views/Notifications.vue'),
+    beforeEnter: AuthRouterService
   },
 
 ]
@@ -86,7 +97,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
 
 
 

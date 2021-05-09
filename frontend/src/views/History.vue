@@ -7,43 +7,51 @@
   <div class="history-chart">
     <canvas></canvas>
   </div>
+<loader v-if="loading" />
+        <p v-else-if="!records.length" class="center">Записей  пока нет</p>
 
-  <section>
-    <table>
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Категория</th>
-        <th>Тип</th>
-        <th>Открыть</th>
-      </tr>
-      </thead>
 
-      <tbody>
-      <tr>
-        <td>1</td>
-        <td>1212</td>
-        <td>12.12.32</td>
-        <td>name</td>
-        <td>
-          <span class="white-text badge red">Расход</span>
-        </td>
-        <td>
-          <button class="btn-small btn">
-            <i class="material-icons">open_in_new</i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <section v-else>
+   <HistoryTable
+   :records="records"
+   />
   </section>
 </div>
 </template>
 
 <script>
+import Loader from '../components/app/Loader.vue'
+import HistoryTable from '../components/HistoryTable.vue'
 export default {
+  components: { HistoryTable, Loader, Loader },
+  name:'history',
+  data() {
+    return {
+      loading: true,
+      records:[],
+      categories:[],
+    }
+    
+  },
+  async mounted() {
+    // this.records = await this.$store.dispatch('getRecord')
+    this.categories = await this.$store.dispatch('getCatigories')
+    console.log("object", this.categories)
+    const records = await this.$store.dispatch('getRecord')
+    const catArr = this.$store.getters.getCatigory
+    const modRecords = records.map( record =>{
+        return {
+          ...records,
+          categoryName: catArr.find(c => c._id === record.category).title,
+          typeClass: record.type === 'income' ? 'green' : 'red',
+          typeText: record.type === 'income' ? 'Доход' : 'Расход',
+        }
+    })
+    this.records =  modRecords
+    console.log('this.records', this.records)
+    this.loading=false
+
+    },
 
 }
 </script>

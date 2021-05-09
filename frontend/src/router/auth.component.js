@@ -5,6 +5,6 @@ export default function(to, from, next) {
     if (store.getters.user) {
         next()
     } else {
-        next('/login?loginError=true')
+        next('/login?message=login')
     }
 }
