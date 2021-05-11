@@ -14,8 +14,8 @@
       <tbody>
       <tr v-for="(record, idx) of records" :key="record._id">
         <td>{{idx +1}}</td>
-        <td>{{record[idx].amount | currency('RUB')}}</td>
-        <td>{{record[idx].date | date('datetime')}}</td>
+        <td>{{record.amount | currency('RUB')}}</td>
+        <td>{{record.date | date('datetime')}}</td>
         <td>{{record.categoryName }}</td>
         <td>
           <span 
@@ -29,7 +29,7 @@
           <button 
           v-tooltip="'Посмотреть запись'"
           class="btn-small btn" 
-          @click="$router.push('/detail-record/' + record[idx]._id)"
+          @click="$router.push('/detail-record/' + record._id)"
           
           >
             <i class="material-icons">open_in_new</i>
@@ -42,13 +42,15 @@
 
 <script>
 export default {
-    props: {
-        records:{
+    // props:['records']
+    props:{
+    records: {
             required: true,
             type: Array
         }
     }
 }
+
 </script>
 
 <style>

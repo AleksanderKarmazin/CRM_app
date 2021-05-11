@@ -64,8 +64,8 @@ export default {
                 const Record = await getRecord()
                 commit('setRecord', Record) 
                 commit('setLoading', false)
-                return Object.keys(Record).map(key =>({...Record[key], _id:key }))
-                Record;
+                // return Object.keys(Record).map(key =>({...Record[key], _id:key }))
+                return Record;
             } catch (error) {                
                 console.log('err', error)
                 console.log('err', error.response.data.stack)

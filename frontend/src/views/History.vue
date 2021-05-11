@@ -16,8 +16,19 @@
 
   <section v-else>
    <HistoryTable
-   :records="records"
+   :records="items"
    />
+    <paginate
+    v-model="page"
+      :page-count="pageCount"
+  :click-handler="pagHendler"
+  :prev-text="'Назад'"
+  :next-text="'Вперёд'"
+  :container-class="'pagination'"
+  :page-class="'waves-effect'"
+    
+    ></paginate>
+
   </section>
 </div>
 </template>
@@ -25,39 +36,57 @@
 <script>
 import Loader from '../components/app/Loader.vue'
 import HistoryTable from '../components/HistoryTable.vue'
+import paginationMixin from '../mixins/pagination.mixins';
 export default {
   components: { HistoryTable, Loader, Loader },
   name:'history',
+  mixins:[paginationMixin],
   data() {
     return {
       loading: true,
       records:[],
-      categories:[],
     }
     
   },
   async mounted() {
-    // this.records = await this.$store.dispatch('getRecord')
-    this.categories = await this.$store.dispatch('getCatigories')
-     await this.$store.dispatch('getRecord')
-    const records = this.$store.getters.getRecord
+    await this.$store.dispatch('getCatigories')
+    this.records = await this.$store.dispatch('getRecord')
+    const recs = this.$store.getters.getRecord
     const catArr = this.$store.getters.getCatigory
-    const modRecords = records.map( record =>{
+    this.setUpPagination(recs.map( record =>{
         return {
-          ...records,
+          ...record,
           categoryName: catArr.find(c => c._id === record.category).title,
           typeClass: record.type === 'income' ? 'green' : 'red',
           typeText: record.type === 'income' ? 'Доход' : 'Расход',
-          
-          
         }
-    })
-    this.records =  modRecords
-    console.log('this.records', this.records)
-    console.log('this.categories', this.categories)
+    }))
+    console.log('this.allItems', this.allItems)
     this.loading=false
 
     },
+    //PRIVIOUSE 
+    // async mounted() {
+    // this.categories = await this.$store.dispatch('getCatigories')
+    //  await this.$store.dispatch('getRecord')
+    // const records = this.$store.getters.getRecord
+    // const catArr = this.$store.getters.getCatigory
+    // const modRecords = records.map( record =>{
+    //     return {
+    //       ...record,
+    //       categoryName: catArr.find(c => c._id === record.category).title,
+    //       typeClass: record.type === 'income' ? 'green' : 'red',
+    //       typeText: record.type === 'income' ? 'Доход' : 'Расход',
+          
+          
+    //     }
+    // })
+    // this.records =  modRecords
+    // console.log('this.records', this.records)
+    // console.log('this.categories', this.categories)
+    // this.loading=false
+
+    // },
 
 }
 </script>

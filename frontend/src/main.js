@@ -19,7 +19,8 @@ import currencyFilter from './filters/currency.filter'
 //Custom plagins
 import messagePlagin from './utils/message.plagin'
  //Directives 
- import tooltipDirective from './directives/tooltip.directive' 
+import tooltipDirective from './directives/tooltip.directive' 
+import Paginate from 'vuejs-paginate'
 
 
 
@@ -28,7 +29,7 @@ Vue.config.productionTip = false
 Vue.use(Vuelidate)
 Vue.use(messagePlagin)
 Vue.use(FlashMessage);
-
+Vue.component('paginate', Paginate)
 // Произошла глобальная регистрация этой функции, теперь она видна во всём приложении 
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
