@@ -7,11 +7,13 @@
     "server": "nodemon --experimental-modules minin_server/backend/server",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:coverage": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "cypress": "^6.6.0",
     "dotenv": "^8.2.0",
@@ -19,6 +21,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "roboto-fontface": "*",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
     "vue-router": "^3.2.0",
     "vuejs-paginate": "^2.1.0",
     "vuelidate": "^0.7.6",

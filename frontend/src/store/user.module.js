@@ -8,6 +8,7 @@ const userFromStorege = JSON.parse(localStorage.getItem('user'));
     ?  userFromStorege
     :  null ;
 
+ 
 
 export default {
     state: {
