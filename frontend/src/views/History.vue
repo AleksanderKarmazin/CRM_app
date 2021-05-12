@@ -38,6 +38,8 @@ import Loader from '../components/app/Loader.vue'
 import HistoryTable from '../components/HistoryTable.vue'
 import paginationMixin from '../mixins/pagination.mixins';
 import { Pie } from 'vue-chartjs';
+import _ from 'lodash'
+
  
 export default {
   components: { HistoryTable, Loader, Loader },
@@ -74,12 +76,20 @@ export default {
 
         }
         })
+        const outcomeCatigories = recForHistory.filter(c => c.type === 'outcome')
+        const unikOutcomeCatigories = _.chain(outcomeCatigories).map('categoryName').uniq().value()
+
         this.setUpPagination(recForHistory)
     console.log('this.allItems', this.allItems)
     console.log('recForHistory', recForHistory)
 
     this.renderChart({
-        labels: catArr.map(c => c.title)
+        labels:unikOutcomeCatigories
+          
+
+      
+        
+        
         // ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
         ,
         datasets: [{
@@ -89,12 +99,12 @@ export default {
                   if (r.category === c._id && r.type === 'outcome') {
                     total += +r.amount
                   }
-                  console.log(`Категория ${r.category} Потрачено ${total}`)
+                  console.log(`Категория ${c.title} трата ${total}`)
                   return total
                 }, 0) 
             })
             ,
-            data: [12, 19, 3, 5, 2, 3],
+            // data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -102,6 +112,9 @@ export default {
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
 
             ],
             borderColor: [
@@ -115,13 +128,6 @@ export default {
             borderWidth: 1
         }]
         },
-       {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
         )
       }
     },
